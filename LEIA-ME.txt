@@ -1,0 +1,41 @@
+TRAMITAR V1.0 - instalação e uso (Chrome ou Vivaldi)
+
+INSTALAR
+1. Extraia o .zip numa pasta FIXA (ex.: Documentos\Extensões\TRAMITAR). Não apague nem mova a pasta depois.
+2. Abra chrome://extensions (Vivaldi: vivaldi://extensions).
+3. Ligue o "Modo do desenvolvedor".
+4. Clique em "Carregar sem compactação" e escolha a pasta que contém o manifest.json.
+5. Fixe o ícone na barra do navegador e clique nele para abrir o painel.
+   (No Vivaldi, se não houver painel lateral, ele abre numa janelinha à direita.)
+6. Aceite a permissão para mac1.siloms.intraer e mac2.siloms.intraer.
+7. Entre no SILOMS normalmente (a extensão nunca pede nem guarda senha).
+
+USAR (painel lateral)
+- Adicionar: digite o Nº do documento (sigad) e clique em "Adicionar".
+  Para vários de uma vez: "Adicionar vários" (um número por linha).
+- Atualizar: "atualizar todos agora" confere todos. No cartão, o botão de recarregar confere só aquele.
+- Filtros: digite na barra de pesquisa (número, nome, status ou setor).
+  "Remover Arquivados" esconde Arquivado/Cancelado.
+  "+ adicionar filtro rápido" cria atalhos (quantos quiser, vários ao mesmo tempo); o ✕ apaga um atalho.
+  Ordenar: botões "Mais recente" e "Dias parado"; a seta ↓/↑ mostra decrescente/crescente (clique de novo para inverter).
+- Setas ▾ ao lado dos títulos fecham/abrem cada seção do painel.
+- Cartão: mostra "Caixa atual" (com dias parado) e "Último despacho" (quem despachou e o texto).
+  "Abrir no SILOMS" abre o documento; a lixeira apaga da lista (pede confirmação).
+- Trocar servidor: use o botão mac1/mac2 se um estiver lento ou fora do ar (botão "i" explica).
+- Avisos aparecem no topo e como notificação do navegador: mudança de status/setor, arquivado,
+  documento parado e não encontrado.
+
+CONFIGURAÇÕES (engrenagem no fim do painel)
+1. Servidor e aparência: servidor padrão, unidade (BASM), modo claro/escuro, filtro rápido.
+2. Conferência e alertas: automática (padrão 30 min, 07:00-18:00, seg-sex), pausa entre consultas,
+   dias para considerar parado (padrão 3).
+3. Adicionar vários.
+4. Documentos e arquivados: limite individual, apagar vários, mover/restaurar arquivados.
+5. Backup: vincule o arquivo "SILOMS ACOMPANHAMENTO EXTENSÃO.json" (ex.: em Documentos).
+   Ele é atualizado após cada conferência e serve para restaurar a lista.
+
+OBSERVAÇÕES
+- A conferência automática só roda com o navegador aberto e a sessão do SILOMS ativa.
+  Se a sessão expirar, entre de novo no SILOMS e clique em "atualizar todos agora".
+- Chrome: a posição do painel (direita/esquerda) é do navegador (Configurações > Aparência).
+- Depois de atualizar a pasta da extensão, clique no ícone de recarregar em chrome://extensions.

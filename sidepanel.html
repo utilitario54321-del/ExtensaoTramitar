@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>TRAMITAR V1.0</title>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="ui.css">
+</head>
+<body class="panel">
+<header>
+  <div class="title">TRAMITAR V1.0</div>
+  <img class="logo" src="icons/icon48.png" alt="BASM">
+</header>
+
+<div class="srv">
+  <span>Trocar servidor</span>
+  <label class="switch"><input type="checkbox" id="srv"><span class="track"></span></label>
+  <b id="srvName">mac1</b>
+  <button id="srvInfoBtn" class="info" type="button" aria-label="Quando trocar o servidor?" aria-expanded="false">i</button>
+</div>
+<div id="srvInfo" class="tip" hidden>Se o SILOMS estiver fora do ar, lento ou não responder, vale trocar o servidor (mac1 ⇄ mac2) e tentar de novo.</div>
+
+<h3 class="sec" data-sec="add"><button type="button" class="chev" aria-expanded="true"><span>Adicionar Subprocessos</span><span class="ar">▾</span></button></h3>
+<div class="secbody" id="sb-add"><input type="text" id="nr" placeholder="Nº do documento (sigad)" inputmode="numeric" autocomplete="off">
+<div class="two">
+  <button id="add" class="btn pri">Adicionar</button>
+  <button id="addMany" class="btn">Adicionar vários</button>
+</div>
+<div id="addMsg" class="small"></div>
+</div>
+<hr class="sep">
+
+<h3 class="sec" data-sec="upd"><button type="button" class="chev" aria-expanded="true"><span>Atualizar status documentos</span><span class="ar">▾</span></button></h3>
+<div class="secbody" id="sb-upd"><button id="all" class="btn pri">atualizar todos agora</button>
+<div id="run" class="small"></div>
+</div>
+
+<div id="sess" class="aviso dg" hidden></div>
+
+<hr class="sep">
+<h3 class="sec" data-sec="fil"><button type="button" class="chev" aria-expanded="true"><span>Filtros</span><span class="ar">▾</span></button></h3>
+<div class="secbody" id="sb-fil"><input type="text" id="filter" placeholder="Digite aqui filtro por número, status, setor etc" autocomplete="off">
+<div class="checks" style="margin-top:10px">
+  <label><input type="checkbox" id="hideClosed"> Remover Arquivados</label>
+</div>
+<button id="qAdd" class="btn pri" type="button">+ adicionar filtro rápido</button>
+<div id="qForm" class="qform" hidden>
+  <input type="text" id="qInput" placeholder="ex.: SIV" autocomplete="off">
+  <button id="qSave" class="btn sm pri" type="button">Salvar</button>
+</div>
+<div id="qChips" class="qlist"></div>
+</div>
+<hr class="sep">
+
+<h3 class="sec" data-sec="doc"><button type="button" class="chev" aria-expanded="true"><span>Documentos</span><span class="ar">▾</span></button></h3>
+<div class="secbody" id="sb-doc"><div class="sortbar">
+  <button id="sortRecent" class="btn sm sortb" type="button">Mais recente <span class="ar">↓</span></button>
+  <button id="sortStalled" class="btn sm sortb" type="button">Dias parado <span class="ar">↓</span></button>
+</div>
+
+<div id="notices"></div>
+<div id="list"></div>
+<div id="empty" class="small" hidden>Nenhum documento acompanhado ainda.</div></div>
+
+<div id="undo" class="undo" role="status" hidden><span id="undoTx"></span><button id="undoBtn" type="button" class="ub">voltar atrás</button></div>
+
+<footer>
+  <button id="gear" class="gear" title="Configurações" aria-label="Configurações">&#9881;</button>
+</footer>
+
+<script type="module" src="sidepanel.js"></script>
+</body>
+</html>

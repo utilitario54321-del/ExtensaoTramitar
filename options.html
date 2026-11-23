@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>TRAMITAR V1.0 · Configurações</title>
+<script src="theme.js"></script>
+<link rel="stylesheet" href="ui.css">
+</head>
+<body class="opts">
+<nav class="menu">
+  <h1>TRAMITAR V1.0</h1>
+  <a href="#servidor" data-s="servidor">1. Servidor e aparência</a>
+  <a href="#conferencia" data-s="conferencia">2. Conferência e alertas</a>
+  <a href="#varios" data-s="varios">3. Adicionar vários</a>
+  <a href="#documentos" data-s="documentos">4. Documentos e arquivados</a>
+  <a href="#backup" data-s="backup">5. Backup</a>
+</nav>
+<main>
+
+<section class="pg" id="servidor">
+  <h2>Servidor e aparência</h2>
+  <div class="box">
+    <b>Servidor padrão</b>
+    <div class="note">Usado nas consultas. Também dá para trocar no painel lateral.</div>
+    <div class="f"><span>mac1</span><label class="switch"><input type="checkbox" id="srv"><span class="track"></span></label><span>mac2</span></div>
+    <div class="note">mac1.siloms.intraer · mac2.siloms.intraer</div>
+    <div class="f"><label class="k" for="unitSigla">Unidade</label><input type="text" id="unitSigla" style="width:140px"></div>
+    <div class="note">As consultas sempre usam a unidade informada (padrão BASM).</div>
+  </div>
+
+  <div class="box">
+    <b>Aparência</b>
+    <div class="note">Vale para o painel lateral e para esta tela.</div>
+    <div class="f"><div class="chips" id="theme"></div></div>
+  </div>
+  <div class="box">
+    <b>Atalhos rápidos</b>
+    <div class="note">Textos que viram botões de filtro no painel lateral (número, parte do nome, status ou setor; ex.: SIV, Arquivado). Pode ter quantos quiser e ligar vários ao mesmo tempo.</div>
+    <div class="f"><input type="text" id="quickFilter" style="width:220px" placeholder="ex.: SIV"><button class="btn sm pri" id="quickAddBtn">Adicionar</button></div>
+    <div class="qlist" id="quickList"></div>
+  </div>
+</section>
+
+<section class="pg" id="conferencia">
+  <h2>Conferência e alertas</h2>
+  <div class="box">
+    <b>Conferência automática</b>
+    <div class="note">Padrão: ligada.</div>
+    <div class="f"><label class="switch"><input type="checkbox" id="autoOn"><span class="track"></span></label><span id="autoOnTx">Ligada</span></div>
+    <div class="f"><label class="k" for="interval">Intervalo</label>
+      <select id="interval">
+        <option value="15">15 min</option><option value="30">30 min</option><option value="45">45 min</option>
+        <option value="60">1 hora</option><option value="90">1h30</option><option value="120">2 horas</option><option value="custom">Outro…</option>
+      </select>
+      <input type="number" id="intervalCustom" min="5" max="720" placeholder="min" hidden>
+      <span class="note">Padrão: 30 min</span>
+    </div>
+    <div class="f"><label class="k">Horário</label><input type="time" id="tStart"><span>às</span><input type="time" id="tEnd"><span class="note">Padrão: 07:00 às 18:00</span></div>
+    <div class="f"><label class="k">Dias</label><div class="chips" id="days"></div></div>
+    <div class="note">Padrão: segunda a sexta.</div>
+    <div class="f"><label class="k" for="pause">Pausa entre consultas</label><input type="number" id="pause" min="0" max="60"><span class="note">segundos · Padrão: 2 s</span></div>
+    <div class="note">É o tempo de espera entre um documento e o próximo durante uma conferência. Com vários documentos, a extensão faz uma consulta por vez e descansa esse tempo antes da seguinte, para não sobrecarregar o SILOMS nem parecer uma rajada de acessos. Pausa maior = conferência mais lenta e mais leve para o sistema; 0 = sem espera (não recomendado).</div>
+    <div class="note">A conferência automática só roda com o navegador aberto e a sessão do SILOMS ativa.</div>
+  </div>
+  <div class="box">
+    <b>Alerta de documento parado</b>
+    <div class="note">Conta os dias desde a última movimentação.</div>
+    <div class="f"><div class="chips" id="stall"></div><input type="number" id="stallCustom" min="1" max="365" style="width:90px" hidden></div>
+    <div class="note">Padrão: 3 dias. Cada documento pode ter um limite próprio na seção Documentos.</div>
+  </div>
+</section>
+
+<section class="pg" id="varios">
+  <h2>Adicionar vários</h2>
+  <div class="box">
+    <b>Nº do documento (sigad)</b>
+    <div class="note">Cole os números, um por linha.</div>
+    <div class="f"><textarea id="bulk" rows="8" placeholder="100001&#10;100002&#10;100003"></textarea></div>
+    <div class="pills" id="pills"></div>
+    <div class="f"><button class="btn sm" id="bulkAdd">Acompanhar documentos</button><span class="note" id="bulkMsg"></span></div>
+  </div>
+</section>
+
+<section class="pg" id="documentos">
+  <h2>Documentos e arquivados</h2>
+  <div class="box">
+    <div class="f" id="bulkBar">
+      <label style="display:flex;align-items:center;gap:6px"><input type="checkbox" id="selAll"> Selecionar todos</label>
+      <button class="btn sm" id="delSel" disabled>Apagar selecionados</button>
+      <span class="confirm" id="delConfirm" hidden><span id="delConfirmTx"></span><span class="row"><button class="btn sm dgb" id="delYes">Sim, apagar</button><button class="btn sm" id="delNo">Cancelar</button></span></span>
+    </div>
+    <table><thead><tr><th style="width:28px"></th><th>Nº</th><th>Nome</th><th>Status</th><th>Limite</th><th>Ações</th></tr></thead><tbody id="docsBody"></tbody></table>
+    <div class="note" id="docsEmpty" hidden>Nenhum documento acompanhado.</div>
+    <div class="note" style="margin-top:8px">✎ editar limite · ↻ conferir só este · ▣ mover para arquivados · ⌫ remover da lista</div>
+  </div>
+
+  <div class="box">
+    <b>Arquivados</b>
+    <table><thead><tr><th>Nº</th><th>Nome</th><th>Status</th><th>Ação</th></tr></thead><tbody id="arqBody"></tbody></table>
+    <div class="note" id="arqEmpty" hidden>Nenhum documento arquivado na extensão.</div>
+  </div>
+</section>
+
+<section class="pg" id="backup">
+  <h2>Backup</h2>
+  <div class="box">
+    <b>Arquivo de backup</b>
+    <div class="note">Nome sugerido: SILOMS ACOMPANHAMENTO EXTENSÃO.json (pasta Documentos). É atualizado sozinho após cada conferência.</div>
+    <div class="f"><span id="bkFile">Nenhum arquivo vinculado.</span></div>
+    <div class="note" id="bkInfo"></div>
+    <div class="f"><button class="btn sm" id="bkLink">Vincular arquivo</button><button class="btn sm" id="bkNow">Salvar agora</button><button class="btn sm" id="bkRestore">Restaurar</button></div>
+    <div class="note" id="bkMsg"></div>
+  </div>
+</section>
+
+</main>
+<script type="module" src="options.js"></script>
+</body>
+</html>

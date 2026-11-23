@@ -1,0 +1,43 @@
+{
+  "manifest_version": 3,
+  "name": "TRAMITAR V1.0",
+  "version": "1.0.0",
+  "description": "Acompanha a tramitação de documentos no módulo de contratos do SILOMS.",
+  "minimum_chrome_version": "116",
+  "icons": { "16": "icons/icon16.png", "32": "icons/icon32.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "permissions": ["storage", "alarms", "notifications", "sidePanel", "offscreen", "declarativeNetRequest"],
+  "host_permissions": [
+    "https://mac1.siloms.intraer/*",
+    "https://mac2.siloms.intraer/*"
+  ],
+  "background": { "service_worker": "background.js", "type": "module" },
+  "action": {
+    "default_title": "TRAMITAR V1.0",
+    "default_icon": { "16": "icons/icon16.png", "32": "icons/icon32.png" }
+  },
+  "side_panel": { "default_path": "sidepanel.html" },
+  "options_ui": { "page": "options.html", "open_in_tab": true },
+  "content_scripts": [
+    {
+      "matches": ["https://mac1.siloms.intraer/siloms_mac/*", "https://mac2.siloms.intraer/siloms_mac/*"],
+      "js": ["inject/xhr_main.js"],
+      "world": "MAIN",
+      "run_at": "document_start",
+      "all_frames": true
+    },
+    {
+      "matches": ["https://mac1.siloms.intraer/siloms_mac/*", "https://mac2.siloms.intraer/siloms_mac/*"],
+      "js": ["inject/frame.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": [
+        "https://mac1.siloms.intraer/siloms_mac/servlet/aqs01093w*",
+        "https://mac2.siloms.intraer/siloms_mac/servlet/aqs01093w*"
+      ],
+      "js": ["content_sub.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
